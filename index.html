@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Quiz: Inputs</title>
+  </head>
+
+  <body>
+    <input id='input-1'>
+    <script>
+      var input1 = document.getElementById('input-1');
+      var input1Value = input1.value;
+      input1Value = 'changed';
+
+      var input2 = input1;
+      input2.value = 'input 2';
+
+      input1.value = '';
+      input2.value = '';      
+    </script>
+  </body>
+</html>
