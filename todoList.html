@@ -1,122 +1,28 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>To-do Lists</title>
 </head>
 
 <body>
-  <button id='toggle-all-button'>Toggle All</button>
-  <button id='add-button'>Add</button>
-  <input id='add-input' placeholder="Enter Text">
-  <ul id='todos-ul'></ul>
-  <script>
-    var todos = [
-      { todoText: 'Item 1', completed: false },
-      { todoText: 'Item 2', completed: false },
-      { todoText: 'Item 3', completed: false }
-    ];
-
-    displayTodos();
-
-    function addTodo() {
-      var newTodo = addInput.value;
-      todos.push({ todoText: newTodo, completed: false });
-      addInput.value = '';
-      displayTodos();
-    }
-
-    function editTodo(event) {
-      var index = event.currentTarget.id.split('-').pop();
-      var editedTodo = prompt('Edit Todo');
-      if (editedTodo !== null && editedTodo !== '') {
-        todos[index].todoText = editedTodo;
-      }
-      displayTodos();
-    }
-
-    function deleteTodo(event) {
-      var index = event.currentTarget.id.split('-').pop();
-      todos.splice(index, 1);
-      displayTodos();
-    }
-
-    function toggle(event) {
-      var index = event.currentTarget.id.split('-').pop();
-      if (todos[index].completed === false) {
-        todos[index].completed = true;
-      } else {
-        todos[index].completed = false;
-      }
-      displayTodos();
-    }
-
-    function displayTodos() {
-      var todosUl = document.getElementById('todos-ul');
-      // This clears the existing <li>s inside of todosUl.
-      todosUl.innerHTML = '';
-
-      for (var i=0; i<todos.length; i++) {
-        var createLi = document.createElement('li');
-        if (todos[i].completed === true) {
-          createLi.innerText = '[X] ' + todos[i].todoText;
-        } else {
-          createLi.innerText = '[ ] ' + todos[i].todoText;
-        }
-
-        var toggleButton = document.createElement('button');
-        toggleButton.innerText = 'Toggle';
-        toggleButton.addEventListener('click', toggle);
-        toggleButton.id = 'toggle-' + i;
-
-        var editButton = document.createElement('button');
-        editButton.innerText = 'Edit';
-        editButton.addEventListener('click', editTodo);
-        editButton.id = 'edit-' + i;
-
-        var deleteButton = document.createElement('button');
-        deleteButton.innerText = 'Delete';
-        deleteButton.addEventListener('click', deleteTodo);
-        deleteButton.id = 'delete-' + i;
-
-        createLi.appendChild(toggleButton);
-        createLi.appendChild(editButton);
-        createLi.appendChild(deleteButton);
-        todosUl.appendChild(createLi);
-      }
-    }
-
-    function toggleAll() {
-      var completedTodos = 0;
-
-      for (var i=0; i<todos.length; i++) {
-        if (todos[i].completed === true) {
-          completedTodos++;
-        }
-      }
-      // if: everything is true
-      if (completedTodos === todos.length) {
-        for (var i=0; i<todos.length; i++) {
-          // change everything to false
-          todos[i].completed = false;
-        } 
-      } else {
-        for (var i=0; i<todos.length; i++) {
-          // change everything to true
-          todos[i].completed = true;
-        }
-      } 
-      displayTodos(); 
-    }
-
-    var toggleAllButton = document.getElementById('toggle-all-button');
-    toggleAllButton.addEventListener('click', toggleAll);
-
-    var addButton = document.getElementById('add-button');
-    var addInput = document.getElementById('add-input');
-    addButton.addEventListener('click', addTodo);
-  </script>
+  <div class="container mt-5 align-self-center">
+    <div class="card card-body">
+      <div class="container">
+        <button id='toggle-all-button' class="btn btn-danger mr-3">Toggle All</button>
+        <button id='add-button' class="btn btn-danger mr-3">Add</button>
+        <input id='add-input' class="p-1" placeholder="Enter Text">
+      </div>
+      <div class="container mt-4">
+        <ul id='todos-ul' class="list-group"></ul>
+      </div>
+    </div>
+  </div>
+  <script src="todoList.js"></script>
 </body>
 
 </html>
